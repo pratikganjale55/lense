@@ -11,18 +11,22 @@ import Footer from './Footer'
 import ContactPage from './ContactPage'
 import ByNumber from '../components/ByNumber'
 import NumberCount from './NumberCount'
-
+import {motion} from "framer-motion" ;
+import img from "../assets/groupImg.png"
+import MovingCards from '../components/MovingLogo'
 const Home = () => {
+  const transition = {typr : "spring", duration : 3}
   return (
     <div>
       
-      <HeroPage/>
-      <About/>
+       <HeroPage/>
+       <About/>
       <Services/>
       <Feature/>
       <Vision/>
       <OurBlogs/>
       <ContactPage/>
+      <MovingCards/>
       <NumberCount/>
       <FAQSection/>
       <Footer/>

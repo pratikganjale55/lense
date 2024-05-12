@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useTheme } from "../context/ThemeProvider";
 
 const Card = ({ title, imageUrl, description, index }) => {
-  const {isDarkMode} = useTheme()
+  const { isDarkMode } = useTheme();
   const controls = useAnimation();
   const { ref, inView } = useInView();
 
@@ -19,14 +19,18 @@ const Card = ({ title, imageUrl, description, index }) => {
   }, [controls, inView]);
   return (
     <motion.div
-      className= {`max-w-md mx-auto bg-white ${isDarkMode && "bg-slate-900"} rounded-xl shadow-md overflow-hidden md:max-w-2xl`}
+      className={`max-w-md mx-auto  ${
+        isDarkMode ? "bg-slate-900" : "bg-white"
+      } rounded-xl shadow-md overflow-hidden md:max-w-2xl`}
       ref={ref}
       initial={{ opacity: 0, x: -100 }}
       animate={controls}
     >
       <div className="p-8">
         <motion.h2
-          className={`text-lg font-semibold ${isDarkMode ? "text-white" : "text-gray-800" }  mb-4 text-center`}
+          className={`text-lg font-semibold ${
+            isDarkMode ? "text-white" : "text-gray-800"
+          }  mb-4 text-center`}
           initial={{ opacity: 0, x: -100 }}
           animate={controls}
           transition={{ duration: 1, delay: 1 }}
@@ -44,7 +48,7 @@ const Card = ({ title, imageUrl, description, index }) => {
           />
         </div>
         <motion.p
-          className={`${isDarkMode ? "text-white" : "text-gray-800" }`}
+          className={`${isDarkMode ? "text-white" : "text-gray-800"}`}
           initial={{ opacity: 0, x: -100 }}
           animate={controls}
           transition={{ duration: 1, delay: 1 }}

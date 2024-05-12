@@ -2,9 +2,13 @@ import React from "react";
 import groupImg from "../assets/groupImg.png";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeProvider";
+import {motion} from "framer-motion" ;
+import { useInView } from "react-intersection-observer";
 
 const About = () => {
   const { isDarkMode } = useTheme();
+  const [ref, inView] = useInView();
+  const transition = {typr : "spring", duration : 3}
   return (
     <div className={`flex flex-col mt-6 items-center justify-center m-3 p-3 ${isDarkMode && "text-white"} `}>
       <h2 className="text-3xl md:text-4xl mb-6">About Us</h2>
@@ -28,13 +32,17 @@ const About = () => {
           </button>
         </div>
 
-        <div className="flex-1 overflow-hidden flex items-center justify-center border border-gray-300">
-          <img
-            src={groupImg}
-            alt="Group"
-            className="w-full h-auto object-cover"
-            style={{ maxHeight: "400px" }}
-          />
+        <div ref={ref} className="flex-1 overflow-hidden flex items-center justify-center border-8 border-gray-400">
+        <motion.img 
+           
+           initial = {{opacity : 0, x:-100}}
+           animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : -100 }}
+        exit={{ opacity: 0, x: 100 }}
+           transition={transition}
+           className="w-full h-auto object-cover"
+           style={{ maxHeight: "400px" }}
+           src={groupImg} 
+         alt="" />
         </div>
       </div>
     </div>

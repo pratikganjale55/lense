@@ -4,12 +4,9 @@ import { useInView } from "react-intersection-observer";
 import { useTheme } from "../context/ThemeProvider";
 
 
-const ServiceCard = ({ item }) => {
+const ServiceCard = ({ item, inView, ref }) => {
   const { isDarkMode } = useTheme();
-    const { ref, inView } = useInView({
-      triggerOnce: true,
-      threshold: 0.5,
-    });
+    
   
     const isOdd = item.id % 2 !== 0;
     const direction = isOdd ? "-100%" : "100%";
@@ -21,16 +18,15 @@ const ServiceCard = ({ item }) => {
         opacity: 1,
         transition: {
           type: "spring",
-          damping: 10,
-          stiffness: 100,
+          duration : 3
         },
       },
     };
   
     return (
       <motion.div
-        ref={ref}
-        className={`bg-white ${isDarkMode && "bg-slate-900"} rounded-lg shadow-lg p-6 flex items-center flex-1 hover:bg-${item.color}-100 hover:text-${item.color}-900`}
+        
+        className={` ${isDarkMode ? "bg-slate-900" : "bg-white" } rounded-lg shadow-lg p-6 flex items-center flex-1 hover:bg-${item.color}-100 hover:text-${item.color}-900`}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={variants}

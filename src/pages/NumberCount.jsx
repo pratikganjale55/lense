@@ -4,33 +4,25 @@ import { useInView } from "react-intersection-observer";
 import ByNumber from "../components/ByNumber";
 const NumberCount = () => {
   const [ref, inView] = useInView();
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, Math.round);
 
-  useEffect(() => {
-    if (inView) {
-      const animation = animate(count, 50, {
-        duration: 2,
-      });
-    }
-  }, [inView]);
   return (
     <div
+      ref={ref}
       className="flex flex-wrap justify-center items-center py-8 relative"
       style={{ background: "#272E5C", width: "100%" }}
     >
       <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-4 text-white">
-        <ByNumber count={15} />
+        <ByNumber count={15} ref={ref} inView={inView}/>
         <p className="text-center">Solutions for Global crises</p>
       </div>
 
       <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-4 text-white">
-        <ByNumber count={10} />
+        <ByNumber count={10} ref={ref} inView={inView}/>
         <p className="text-center">University Collaborations</p>
       </div>
 
       <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-4 text-white">
-        <ByNumber count={25} />
+        <ByNumber count={25}  ref={ref} inView={inView}/>
         <p className="text-center">Employees Worldwide</p>
       </div>
 
